@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Carrot Cake Litter Diary</title>
+<meta name="theme-color" content="#256b5d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='38' r='14' fill='%23256b5d'/%3E%3Ccircle cx='16' cy='22' r='7' fill='%23256b5d'/%3E%3Ccircle cx='28' cy='13' r='7' fill='%23256b5d'/%3E%3Ccircle cx='40' cy='13' r='7' fill='%23256b5d'/%3E%3Ccircle cx='50' cy='23' r='7' fill='%23256b5d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="boot" class="boot"><div class="login-card"><div class="eyebrow">Carrot Cake Litter Diary</div><p class="muted">Зареждане…</p></div></div>
+
+<div id="login" class="boot" hidden>
+  <form class="login-card" id="loginForm">
+    <div class="eyebrow">Carrot Cake Litter Diary</div>
+    <h1 id="loginTitle">Вход</h1>
+    <p id="loginText" class="muted">Въведи имейла си. Ще получиш линк за вход — без парола.</p>
+    <div class="field"><label for="loginEmail">Имейл</label><input id="loginEmail" type="email" autocomplete="email" required></div>
+    <button class="btn primary" type="submit" id="loginBtn">Изпрати линк за вход</button>
+    <p id="loginMsg" class="small" role="status"></p>
+  </form>
+</div>
+
+<div id="app" hidden>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <div class="eyebrow" id="hEyebrow">Carrot Cake Litter Diary</div><div id="litSel"></div>
+      <h1 id="hTitle">Кучило</h1>
+      <div class="mast-meta" id="hMeta">Зареждане…</div>
+    </div>
+    <div class="mast-r"><button type="button" class="litcov" id="hCover" hidden aria-label="Снимка на кучилото"><img id="hCoverImg" alt=""></button>
+    <div class="age" id="hAge" hidden><span>ден</span><b id="hAgeN">0</b><span id="hAgeW"></span></div></div>
+  </header>
+  <nav class="tabs" role="tablist" aria-label="Раздели">
+    <button class="tab" role="tab" data-tab="birth" aria-selected="false">Раждане</button>
+    <button class="tab" role="tab" data-tab="today" aria-selected="true">Претегляне</button>
+    <button class="tab" role="tab" data-tab="dev" aria-selected="false">Развитие</button>
+    <button class="tab" role="tab" data-tab="analysis" aria-selected="false">Анализ</button>
+    <button class="tab" role="tab" data-tab="puppies" aria-selected="false">Кучило</button>
+    <button class="tab" role="tab" data-tab="owners" aria-selected="false">Собственици</button>
+    <button class="tab" role="tab" data-tab="access" aria-selected="false" id="tabAccess" hidden>Достъп</button>
+  </nav>
+  <div id="banner"></div>
+  <section id="view" aria-live="polite"></section>
+</div>
+<div id="toast" role="status"></div>
+<input type="file" id="photoInput" accept="image/*" hidden>
+<div class="modal" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Снимка">
+  <div class="sheet lb"><div class="sheet-h"><b id="lbCap"></b><button class="btn ghost" id="lbClose" aria-label="Затвори">✕</button></div>
+  <img id="lbImg" alt="">
+  <div class="form-acts"><button class="btn ghost" id="lbDel" style="color:var(--bad);margin-right:auto">Изтрий снимката</button><button class="btn" id="lbCover">Направи корица</button><button class="btn" id="lbPrev">‹</button><button class="btn" id="lbNext">›</button></div></div>
+</div>
+<div class="modal" id="drawModal" hidden role="dialog" aria-modal="true" aria-labelledby="drawTitle">
+  <div class="sheet">
+    <div class="sheet-h"><h2 id="drawTitle">Белези</h2><button class="btn ghost" id="drawClose" aria-label="Затвори">✕</button></div>
+    <p class="small muted" style="margin:0">Нарисувай с пръст белезите върху силуета — главата е вляво.</p>
+    <div class="tools">
+      <div class="pens" role="group" aria-label="Цвят">
+        <button type="button" class="pen" data-pen="#ffffff" title="Бяло" aria-label="Бяло"></button>
+        <button type="button" class="pen" data-pen="#1b1b1b" title="Черно" aria-label="Черно"></button>
+        <button type="button" class="pen" data-pen="#b5652b" title="Червеникаво" aria-label="Червеникаво"></button>
+        <button type="button" class="pen" data-pen="#d9a35b" title="Подпалено" aria-label="Подпалено"></button>
+        <button type="button" class="pen" data-pen="#8a8a8a" title="Сиво" aria-label="Сиво"></button>
+      </div>
+      <div class="seg" role="group" aria-label="Дебелина"><button type="button" data-size="10">Тънко</button><button type="button" data-size="24">Средно</button><button type="button" data-size="46">Дебело</button></div>
+      <div class="row" style="gap:6px"><button type="button" class="btn" id="drawUndo">Назад</button><button type="button" class="btn" id="drawClear">Изчисти</button><button type="button" class="btn" id="drawSil">Без силует</button></div>
+    </div>
+    <canvas id="drawCanvas" width="1000" height="700" aria-label="Платно за рисуване"></canvas>
+    <div class="field"><label for="drawText">Описание на белезите</label>
+      <div class="row" style="flex-wrap:nowrap;align-items:stretch"><input id="drawText" placeholder="напр. бяла звезда на гърдите" style="flex:1"><button type="button" class="btn" id="drawAsk" hidden>Опиши с Claude</button></div>
+      <span class="small muted" id="drawHint">Текстът се добавя към „Отличителни белези“.</span></div>
+    <div class="form-acts"><button type="button" class="btn ghost" id="drawCancel">Отказ</button><button type="button" class="btn primary" id="drawSave">Запази белезите</button></div>
+  </div>
+</div>
+<div class="foot"><span id="whoami" class="small muted"></span> · <button type="button" class="linkbtn small" id="signOut">Изход</button></div>
+</div>
+
+<script src="app.js"></script>
+<script type="module" src="fb.js"></script>
+</body>
+</html>

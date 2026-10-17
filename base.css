@@ -1,0 +1,12 @@
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+.boot{min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:var(--bg,#eef2f0)}
+.login-card{width:100%;max-width:400px;background:var(--surface,#fff);border:1px solid var(--line,#d3dcd8);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.login-card h1{font-size:28px;margin:0}
+.login-card .field{display:flex;flex-direction:column;gap:5px}
+.login-card input{padding:11px 12px;border:1px solid var(--line,#d3dcd8);border-radius:8px;font:inherit;background:var(--bg,#eef2f0);color:inherit}
+.foot{max-width:980px;margin:24px auto 0;padding:0 16px;text-align:center}
+#litSel select{margin-top:6px;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);font:inherit;font-weight:600;color:var(--ink)}
